@@ -1,4 +1,3 @@
-
 "use strict";
 
 const titleElement = document.querySelector(".title");
@@ -6,13 +5,6 @@ const buttonsContainer = document.querySelector(".buttons");
 const yesButton = document.querySelector(".btn--yes");
 const noButton = document.querySelector(".btn--no");
 const catImg = document.querySelector(".cat-img");
-const imageUrls = [
-  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-1.jpg",
-  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-2.jpg",
-  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-3.jpg",
-  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-4.jpg",
-  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-5.jpg"
-];
 
 const MAX_IMAGES = 5;
 
@@ -63,6 +55,14 @@ function generateMessage(noCount) {
 }
 
 function changeImage(image) {
+  const imageUrls = [
+    "https://github.com/RomarTaj/audrey/blob/master/img/cat-1.jpg",
+    "https://github.com/RomarTaj/audrey/blob/master/img/cat-2.jpg",
+    "https://github.com/RomarTaj/audrey/blob/master/img/cat-3.jpg",
+    "https://github.com/RomarTaj/audrey/blob/master/img/cat-4.jpg",
+    "https://github.com/RomarTaj/audrey/blob/master/img/cat-5.jpg",
+  ];
+
   catImg.src = imageUrls[image - 1]; // Adjust for 0-based indexing
 }
 
