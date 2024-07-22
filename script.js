@@ -55,7 +55,7 @@ function generateMessage(noCount) {
 }
 
 function changeImage(image) {
-  catImg.src = `img/cat-${image}.jpg`;
+ catImg.src = `https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-${image}.jpg`;
 }
 
 function updateNoButtonText() {
