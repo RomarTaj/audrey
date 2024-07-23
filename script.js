@@ -8,62 +8,69 @@ const catImg = document.querySelector(".cat-img");
 
 const MAX_IMAGES = 5;
 const imageUrls = [
-    "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-1.jpg",
-    "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-2.jpg",
-    "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-3.jpg",
-    "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-4.jpg",
-    "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-5.jpg"
+  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-1.jpg",
+  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-2.jpg",
+  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-3.jpg",
+  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-4.jpg",
+  "https://raw.githubusercontent.com/RomarTaj/audrey/master/img/cat-5.jpg",
+  "https://github.com/RomarTaj/audrey/blob/master/img/cat-yes.jpg"
 ];
 
 let play = true;
 let noCount = 0;
 
 yesButton.addEventListener("click", handleYesClick);
-noButton.addEventListener("click", function () {
-    if (play) {
-        noCount++;
-        const imageIndex = Math.min(noCount, MAX_IMAGES);
-        changeImage(imageIndex);
-        resizeYesButton();
-        updateNoButtonText();
-        if (noCount === MAX_IMAGES) {
-            play = false;
-        }
-    }
-});
+noButton.addEventListener("click", handleNoClick);
 
 function handleYesClick() {
-    titleElement.innerHTML = "Yayyy!! :3";
-    buttonsContainer.classList.add("hidden");
-    changeImage("yes");
+  titleElement.innerHTML = "Yayyy!! :3";
+  buttonsContainer.classList.add("hidden");
+  changeImage("yes");
+}
+
+function handleNoClick() {
+  if (play) {
+    noCount++;
+    const imageIndex = Math.min(noCount, MAX_IMAGES);
+    changeImage(imageIndex);
+    resizeYesButton();
+    updateNoButtonText();
+    if (noCount === MAX_IMAGES) {
+      play = false;
+    }
+  }
 }
 
 function resizeYesButton() {
-    const computedStyle = window.getComputedStyle(yesButton);
-    const fontSize = parseFloat(computedStyle.getPropertyValue("font-size"));
-    const newFontSize = fontSize * 1.6;
+  const computedStyle = window.getComputedStyle(yesButton);
+  const fontSize = parseFloat(computedStyle.getPropertyValue("font-size"));
+  const newFontSize = fontSize * 1.6;
 
-    yesButton.style.fontSize = `${newFontSize}px`;
+  yesButton.style.fontSize = `${newFontSize}px`;
 }
 
 function generateMessage(noCount) {
-    const messages = [
-        "No",
-        "Are you sure?",
-        "Pookie please",
-        "Don't do this to me :(",
-        "You're breaking my heart",
-        "I'm gonna cry...",
-    ];
+  const messages = [
+    "No",
+    "Are you sure?",
+    "Pookie please",
+    "Don't do this to me :(",
+    "You're breaking my heart",
+    "I'm gonna cry...",
+  ];
 
-    const messageIndex = Math.min(noCount, messages.length - 1);
-    return messages[messageIndex];
+  const messageIndex = Math.min(noCount, messages.length - 1);
+  return messages[messageIndex];
 }
 
 function changeImage(imageIndex) {
+  if (imageIndex === "yes") {
+    catImg.src = imageUrls[imageUrls.length - 1];
+  } else {
     catImg.src = imageUrls[imageIndex];
+  }
 }
 
 function updateNoButtonText() {
-    noButton.innerHTML = generateMessage(noCount);
+  noButton.innerHTML = generateMessage(noCount);
 }
